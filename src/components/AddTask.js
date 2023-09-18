@@ -37,8 +37,8 @@ const AddTask=()=>{
     };
     
     return(
-        <div>
-            <Container style={{display:"flex",marginTop:50, padding:20, marginLeft:50, flexDirection:'column', width:'92%'}}>
+        <div className='container'>
+            <Container style={{display:"flex",marginTop:50, flexDirection:'column', width:'92%'}}>
             <form onSubmit={handleForm}>
 
             <TextField fullWidth id="State" label="To-Do/Doing/Done" variant="outlined" margin='dense' onChange={(e)=>{
