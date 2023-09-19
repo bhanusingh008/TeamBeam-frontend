@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField'
-import { Container} from "reactstrap";
+import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import axios from "axios";
 import base_url from "../apis/dataApi";
 import Button from '@mui/material/Button';
@@ -38,32 +38,72 @@ const AddTask=()=>{
     
     return(
         <div className='container'>
-            <Container style={{display:"flex",marginTop:50, flexDirection:'column', width:'92%'}}>
-            <form onSubmit={handleForm}>
-
-            <TextField fullWidth id="State" label="To-Do/Doing/Done" variant="outlined" margin='dense' onChange={(e)=>{
-                        
+            <Form>
+            <FormGroup>
+                    <Label for="state">
+                    Status
+                    </Label>
+                    <Input
+                    id="state"
+                    name="state"
+                    type="select"
+                    onChange={(e) =>{
                         setTask({...task, state: e.target.value})
-                    }}    
-            />
+                    }}
+                    >
+                    <option>
+                        Select
+                    </option>
+                    <option>
+                        To-Do
+                    </option>
+                    <option>
+                        Doing
+                    </option>
+                    <option>
+                        Done
+                    </option>
+                    </Input>
+                </FormGroup>
 
-            <TextField fullWidth id="Title" label="Task Title" variant="outlined" margin='dense' onChange={(e)=>{
-                        
+                <FormGroup>
+                    <Label for="Title">
+                    Title
+                    </Label>
+                    <Input
+                    id="title"
+                    name="title"
+                    placeholder="Enter the title"
+                    type="text"
+                    onChange={(e) =>{
                         setTask({...task, title: e.target.value})
-                    }}    
-            />
+                    }}
+                    />
+                </FormGroup>
 
-            <TextField fullWidth id="desc" label="Description" variant="outlined" margin='dense' onChange={(e)=>{
-                        
+                <FormGroup>
+                    <Label for="description">
+                    Description
+                    </Label>
+                    <Input
+                    id="description"
+                    name="text"
+                    type="textarea"
+                    onChange={(e) =>{
                         setTask({...task, des: e.target.value})
                     }}
-            />
-            <Button variant='contained' type='submit' color='success'>Add Task</Button>
-            
-            <Button variant='contained' href='/' style={{marginLeft:'20px'}}>Back</Button>
-            
-         </form>
-            </Container>
+                    />
+                </FormGroup>
+                
+                <Button onClick={handleForm}>
+                    Submit
+                </Button>
+
+                <Button href='/'>
+                    Back
+                </Button>
+
+                </Form>
         </div>
     )
 }

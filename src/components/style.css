@@ -19,11 +19,11 @@
         padding: 20px 20px 20px 20px;
         margin: auto;
     }
+}
 
-    .container{
-        display: flex;
-        justify-content: center;
-    }
+.container{
+   margin-top: 50px;
+   width: 60%;
 }
 
 .status-tag{
