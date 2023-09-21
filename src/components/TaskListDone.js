@@ -10,7 +10,7 @@ function TaskListDone({state}){
     const GetAllTodo=()=>{
         axios.get(`${base_url}/done`).then(
             (response)=>{
-                console.log(response.data);
+                // console.log(response.data);
                 settask(response.data);
             }
         );
@@ -22,7 +22,7 @@ function TaskListDone({state}){
         GetAllTodo();
     }, []);
 
-    console.log("here");
+    // console.log("here");
 
     return(
         <div className='task-container'>

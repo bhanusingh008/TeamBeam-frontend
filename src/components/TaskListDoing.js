@@ -7,12 +7,10 @@ import base_url from "../apis/dataApi";
 
 function TaskListDoing({state}){
 
-    var count = 0;
-
     const GetAllTodo=()=>{
         axios.get(`${base_url}/doing`).then(
             (response)=>{
-                console.log(response.data);
+                // console.log(response.data);
                 settask(response.data);
             }
         );

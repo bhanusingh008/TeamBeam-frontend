@@ -10,6 +10,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { MenuItem } from '@mui/material';
 
 
 function Task({id, title, description, state}){
@@ -32,7 +33,7 @@ function Task({id, title, description, state}){
 
         axios.post(`${base_url}/task`, data).then(
             (response)=>{
-                console.log(response);
+                // console.log(response);
                 alert('Task Updated');
                 reloadPage();
             }, 
@@ -53,6 +54,7 @@ function Task({id, title, description, state}){
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
+        setTask({...task, title: title, des : description, id : id});
         setOpen(true);
     };
     
@@ -83,11 +85,12 @@ function Task({id, title, description, state}){
                     <TextField
                     autoFocus
                     margin="dense"
-                    id="titel"
+                    id="title"
                     label="Task title"
                     type="name"
                     fullWidth
                     variant="standard"
+                    defaultValue={task.title}
                     onChange={(e)=>{
                         
                         setTask({...task, title: e.target.value, id:id})
@@ -101,6 +104,7 @@ function Task({id, title, description, state}){
                     type="course_desc"
                     fullWidth
                     variant="standard"
+                    defaultValue={task.des}
                     onChange={(e)=>{
                         
                         setTask({...task, des: e.target.value})
@@ -112,14 +116,20 @@ function Task({id, title, description, state}){
                     margin="dense"
                     id=""
                     label="To-Do/Doing/Done"
-                    type="name"
+                    select
                     fullWidth
                     variant="standard"
+
+                    // defaultValue={JSON.stringify(task)}
                     onChange={(e)=>{
                         
                         setTask({...task, state: e.target.value})
                     }}
-                    />
+                    >
+                    <MenuItem value="To-Do">To-Do</MenuItem>
+                    <MenuItem value="Doing">Doing</MenuItem>
+                    <MenuItem value="Done">Done</MenuItem>
+                    </TextField>
                     </DialogContent>
                     <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
