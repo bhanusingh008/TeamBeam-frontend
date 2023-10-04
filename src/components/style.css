@@ -2,6 +2,11 @@
     background-color: #E3E4E6;
     margin-top: 50px;
     border-radius: 2%;
+    background-color: black;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+    color: white;
 }
 
 .home{
@@ -24,12 +29,20 @@
 .container{
    margin-top: 50px;
    width: 60%;
+   justify-content: center;
+   color:white;
+   max-width: 400px;
+}
+
+hr{
+    border: 1px solid white;
+    margin-top: 12px;
 }
 
 .status-tag{
     margin-top: 5px;
     font-size: 1.5rem;
-    color: #4D4D4E;
+    color: white;
     /* border-radius: 5%; */
     height: 60px;
     margin-bottom: -40px;
@@ -51,6 +64,7 @@
     /* display: flex;
     flex-direction: row; */
     margin-top: 100px;
+    background-color: black;
 }
 
 .status-area{
@@ -96,4 +110,65 @@
    margin-left: 10px;
    margin-right: 10px;
    /* background-color: black; */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Slab&family=Roboto:wght@300;400;500&family=Source+Code+Pro:wght@500&family=Teko:wght@600&display=swap');
+
+.login-header{
+    text-align: center;
+    font-size: 35px;
+    font-family: Lato;
+    color: white
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 20px;
+    color: white;
+    background-color: black;
+    height: 250px;
+    width: 250px;
+    margin:auto;
+    position: relative;
+    border-radius: 5px;
+    margin-top: 20vh;
+    box-shadow: 0px 0px 10px 3px #BDC1C6;
+}
+
+.login-button{
+    height: 30px;
+    width: 50px;
+    text-align: center;
+    background-color: white;
+    color:black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    /* position: absolute; */
+    /* margin-top: 1px; */
+}
+
+.login-page{
+    background-color: black;
+    height: 100vh;
+    /* color: white; */
+}
+
+.task{
+    background-color: black;
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    /* position: relative; */
+}
+
+.task-btns{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
 }

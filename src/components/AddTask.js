@@ -5,8 +5,12 @@ import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import axios from "axios";
 import base_url from "../apis/dataApi";
 import Button from '@mui/material/Button';
+import { useAuthHeader } from 'react-auth-kit';
+import { Toaster, toast } from 'react-hot-toast';
 
 const AddTask=()=>{
+
+    const authHeader = useAuthHeader();
 
     useEffect(()=>{
         document.title = "Add Task"
@@ -24,13 +28,17 @@ const AddTask=()=>{
     // function to post data to server
 
     const post_course=(data)=>{
-        axios.post(`${base_url}/task`, data).then(
+        axios.post(`${base_url}/task`, data, {
+            headers:{
+                'Authorization': authHeader()
+            }
+        }).then(
             (response)=>{
                 console.log(response);
-                alert('Task Added');
+                toast('Task Added Successfully :)')
             }, 
             (error)=>{
-                alert("Not appropriate values.");
+                toast('InApproprate Values :|')
                 console.log(error);
             }
         );
@@ -41,12 +49,13 @@ const AddTask=()=>{
             <Form>
             <FormGroup>
                     <Label for="state">
-                    Status
+                    Status: 
                     </Label>
                     <Input
                     id="state"
                     name="state"
                     type="select"
+                    style={{backgroundColor:'black'}}
                     onChange={(e) =>{
                         setTask({...task, state: e.target.value})
                     }}
@@ -104,6 +113,7 @@ const AddTask=()=>{
                 </Button>
 
                 </Form>
+            <Toaster/>
         </div>
     )
 }

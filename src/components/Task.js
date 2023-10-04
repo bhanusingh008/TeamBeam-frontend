@@ -11,9 +11,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { MenuItem } from '@mui/material';
+import { useAuthHeader } from 'react-auth-kit';
+import { Toaster, toast } from 'react-hot-toast';
 
 
 function Task({id, title, description, state}){
+
+    const useAuth = useAuthHeader();
 
     const reloadPage = () => {
         window.location.reload()
@@ -21,21 +25,32 @@ function Task({id, title, description, state}){
 
     const DeleteTask=()=>{
 
-        axios.delete(`${base_url}/delete/${id}`).then(
+        axios.delete(`${base_url}/delete/${id}`, {
+            headers:{
+                'Authorization': useAuth()
+            }
+        }).then(
             (response)=>{
-                console.log(response.data);
-                reloadPage();
+                // console.log(response.data);
+                toast('Task deleted.')
+
+                setInterval(()=>{reloadPage()}, 700);
+                // reloadPage();
             }
         );
     };
 
-    const update_task=(data)=>{
+    const Update_task=(data)=>{
 
-        axios.post(`${base_url}/task`, data).then(
+        axios.post(`${base_url}/task`, data, {
+            headers:{
+                'Authorization': useAuth()
+            }
+        }).then(
             (response)=>{
                 // console.log(response);
-                alert('Task Updated');
-                reloadPage();
+                toast('Task Updated.')
+                setInterval(()=>{reloadPage()}, 700);
             }, 
             (error)=>{
                 console.log(error);
@@ -45,7 +60,7 @@ function Task({id, title, description, state}){
 
     const handleForm=(e)=>{
         console.log(task);
-        update_task(task);
+        Update_task(task);
         e.preventDefault();
     };
 
@@ -64,85 +79,75 @@ function Task({id, title, description, state}){
 
     return(
         
-<div class="max-w-sm p-6 bg-white border  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 my-3">
+<div class="max-w-sm p-6 bg-white border  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 my-3" style={{marginBottom:'10px'}} className='task'>
   
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight" style={{wordWrap:'break-word'}}>{title}</h5>
         {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{description}</p> */}
-        <p>{description}</p>
+        <p style={{marginBottom:'10px', wordWrap:'break-word'}}>{description}</p>
 
-
-        <Button variant="outlined" onClick={handleClickOpen} class="m-2 font-medium text-center text-white 
-        bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
-        dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-100">
-                    Update
-                    </Button>
-                    <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>Update</DialogTitle>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Update</DialogTitle>
                     <DialogContent>
-                    <DialogContentText>
-                    Please Enter the details you desire to update.
-                    </DialogContentText>
-                    <TextField
-                    autoFocus
-                    margin="dense"
-                    id="title"
-                    label="Task title"
-                    type="name"
-                    fullWidth
-                    variant="standard"
-                    defaultValue={task.title}
-                    onChange={(e)=>{
-                        
-                        setTask({...task, title: e.target.value, id:id})
-                    }}    
-                    />
-                    <TextField
-                    autoFocus
-                    margin="dense"
-                    id=""
-                    label="Description"
-                    type="course_desc"
-                    fullWidth
-                    variant="standard"
-                    defaultValue={task.des}
-                    onChange={(e)=>{
-                        
-                        setTask({...task, des: e.target.value})
-                    }}
-                    />
+                        <DialogContentText>Please Enter the details you desire to update.</DialogContentText>
+                            <TextField
+                            autoFocus
+                            margin="dense"
+                            id="title"
+                            label="Task title"
+                            type="name"
+                            fullWidth
+                            variant="standard"
+                            defaultValue={task.title}
+                            onChange={(e)=>{
+                                
+                                setTask({...task, title: e.target.value, id:id})
+                            }}    
+                            />
+                            <TextField
+                            autoFocus
+                            margin="dense"
+                            id=""
+                            label="Description"
+                            type="course_desc"
+                            fullWidth
+                            variant="standard"
+                            defaultValue={task.des}
+                            onChange={(e)=>{
+                                
+                                setTask({...task, des: e.target.value})
+                            }}
+                            />
 
-                    <TextField
-                    autoFocus
-                    margin="dense"
-                    id=""
-                    label="To-Do/Doing/Done"
-                    select
-                    fullWidth
-                    variant="standard"
+                            <TextField
+                            autoFocus
+                            margin="dense"
+                            id=""
+                            label="To-Do/Doing/Done"
+                            select
+                            fullWidth
+                            variant="standard"
 
-                    // defaultValue={JSON.stringify(task)}
-                    onChange={(e)=>{
-                        
-                        setTask({...task, state: e.target.value})
-                    }}
-                    >
+                            // defaultValue={JSON.stringify(task)}
+                            onChange={(e)=>{
+                                
+                                setTask({...task, state: e.target.value})
+                            }}
+                            >
                     <MenuItem value="To-Do">To-Do</MenuItem>
                     <MenuItem value="Doing">Doing</MenuItem>
                     <MenuItem value="Done">Done</MenuItem>
                     </TextField>
                     </DialogContent>
-                    <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleForm}>Update</Button>
-                    </DialogActions>
-                    </Dialog>
-
-
-        <Button class="m-2 font-medium text-center text-white 
-        bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
-        dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-100" onClick={DeleteTask}>
-            Delete
-        </Button>
+                <DialogActions>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button onClick={handleForm}>Update</Button>
+                </DialogActions>
+            </Dialog>
+        <div className='task-btns'>
+        <button className='login-button' variant="outlined" onClick={handleClickOpen} >Update</button>
+        <button className='login-button' variant='outlined' onClick={DeleteTask}>Delete</button>
+        </div>
+        <Toaster/>
 </div>
 
     );

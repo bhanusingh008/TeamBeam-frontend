@@ -3,11 +3,24 @@ import TaskListToDo from "./TaskListToDo";
 import TaskListDoing from "./TaskListDoing";
 import TaskListDone from "./TaskListDone";
 import logo from './logo.png';
+import { useSignOut } from "react-auth-kit";
+import { useNavigate } from "react-router-dom";
+// import { useAuthHeader } from "react-auth-kit";
 
 function Home(){
 
+    const navigate = useNavigate();
+    const SignOut = useSignOut();
+
+    const logOut = () =>{
+
+        SignOut();
+        navigate('/login');
+    }
+
     return(
         <>
+
         <div className="header">
             KANBAN APP
             <img src={logo} style={{height:'40px', width:'50px', margin:'20'}}></img>
@@ -21,12 +34,14 @@ function Home(){
             Add Task
         </a>
 
+        </div>
+
+        <button onClick={() => {logOut()}} style={{color:'white'}}>SignOut</button>
+
         <div className="home">
             <TaskListToDo state='To Do'/>
             <TaskListDoing state='Doing' />
             <TaskListDone state='Done' />
-        </div>
-
         </div>
         </>
     );

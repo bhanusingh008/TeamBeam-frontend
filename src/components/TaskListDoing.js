@@ -3,17 +3,31 @@ import {React, useState, useEffect} from 'react';
 import './style.css';
 import Task from './Task';
 import axios from "axios";
+import { useAuthHeader } from 'react-auth-kit';
 import base_url from "../apis/dataApi";
 
 function TaskListDoing({state}){
 
-    const GetAllTodo=()=>{
-        axios.get(`${base_url}/doing`).then(
-            (response)=>{
-                // console.log(response.data);
-                settask(response.data);
-            }
-        );
+    const authHeader = useAuthHeader();
+
+    // console.log(authHeader());
+
+    const GetAllTodo= async ()=>{
+        try{
+            await axios.get(`${base_url}/doing`, {
+                headers:{
+                    'Authorization': authHeader()
+                }
+            }).then(
+                (response)=>{
+                    // console.log(response.data);
+                    settask(response.data);
+                }
+            )
+        }catch(error){
+
+            alert("Error Fetching data from Server");
+        }
     };
 
     const [task, settask] = useState([]);
@@ -25,6 +39,8 @@ function TaskListDoing({state}){
     return(
         <div className='task-container'>
             <h1 className='status-tag'>{state}</h1>
+
+            <hr></hr>
 
         <div className='task-list'>
             {  
