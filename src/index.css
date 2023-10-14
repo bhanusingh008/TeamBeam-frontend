@@ -31,3 +31,8 @@ code {
   border: 20px solid transparent;
   /* background-clip: content-box; */
 }
+
+iframe
+{
+    display: none;
+}

@@ -14,8 +14,12 @@ function Home(){
 
     const logOut = () =>{
 
-        SignOut();
-        navigate('/login');
+        try{
+            SignOut();
+            navigate('/login');
+        }catch(err){
+            console.log(err);
+        }
     }
 
     return(
@@ -36,7 +40,7 @@ function Home(){
 
         </div>
 
-        <button onClick={() => {logOut()}} style={{color:'white'}}>SignOut</button>
+        <button onClick={logOut} style={{color:'white'}}>SignOut</button>
 
         <div className="home">
             <TaskListToDo state='To Do'/>

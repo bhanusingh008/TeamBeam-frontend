@@ -5,6 +5,7 @@ import { useSignIn } from 'react-auth-kit';
 import { useNavigate } from 'react-router-dom';
 import { useAuthHeader } from 'react-auth-kit';
 import { Toaster, toast } from 'react-hot-toast';
+import base_url from '../apis/dataApi';
 
 export const Login = () => {
 
@@ -38,7 +39,7 @@ export const Login = () => {
         e.preventDefault();
 
         try{
-            const response = await axios.post('http://localhost:5000/login', loginData)
+            const response = await axios.post(`${base_url}/login`, loginData)
 
             let tokenRes = response.data.token;
 
