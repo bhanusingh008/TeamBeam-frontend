@@ -54,10 +54,18 @@ hr{
     color: white;
     background-color: black;
     position: fixed;
-    margin-top: -100px;
+    margin-top: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10; 
+    margin-top: -35px;
+}
+
+.menu{
+    background-color: transparent;
+    margin-top: 35px;
+    margin-left: -50px;
 }
 
 .add-btn{
@@ -171,4 +179,40 @@ hr{
     justify-content: center;
     gap: 10px;
     margin-bottom: 10px;
+}
+
+.bg-img{
+    height: 72vh;
+    width: 100vw;
+    z-index: -1;
+    margin: 0;
+}
+
+.text-on-image{
+    font-size: 20px;
+    position: absolute;
+    z-index: 0;
+    color:white;
+    bottom: 50%;
+    width: 100%;
+}
+
+.contact-me{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.info-text{
+    color: white;
+    font-size: 40px;
+}
+
+.info-page{
+    margin-top: 50px;
+}
+
+.footer{
+    color: white;
+    background-color: #3F3F3F;
 }

@@ -22,7 +22,7 @@ export const Login = () => {
         password:""
     });
 
-    if(s.length != 0){
+    if(s.length !== 0){
         return(
             <div style={{marginTop:'200px', color:'white'}}>
             <div>
