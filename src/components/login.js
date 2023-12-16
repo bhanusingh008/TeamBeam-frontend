@@ -79,7 +79,7 @@ export const Login = () => {
 
   return (
     <div className='login-page'>
-        <div className='login-header'>Welcome To Kanban</div>
+        <div className='login-header'>Welcome To TeamBeam</div>
 
         <div>
             <h1 style={{color:'white'}}>
