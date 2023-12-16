@@ -13,3 +13,5 @@ Add-Task:
 Update-Task:
 <img width="960" alt="Screenshot 2023-10-26 172743" src="https://github.com/bhanusingh008/kanban-frontend/assets/122738012/9dfe50e5-4a33-4853-b099-a2d4832035ed">
 
+#Update
+=> Feature to add teams to be added soon!
