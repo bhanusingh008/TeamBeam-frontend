@@ -31,24 +31,20 @@ function Task({id, title, description, state}){
             }
         }).then(
             (response)=>{
-                // console.log(response.data);
                 toast('Task deleted.')
-
                 setInterval(()=>{reloadPage()}, 700);
-                // reloadPage();
             }
         );
     };
 
     const Update_task=(data)=>{
-
         axios.post(`${base_url}/task`, data, {
             headers:{
                 'Authorization': useAuth()
             }
         }).then(
             (response)=>{
-                // console.log(response);
+
                 toast('Task Updated.')
                 setInterval(()=>{reloadPage()}, 700);
             }, 
@@ -59,13 +55,11 @@ function Task({id, title, description, state}){
     };
 
     const handleForm=(e)=>{
-        console.log(task);
-        Update_task(task);
         e.preventDefault();
+        Update_task(task);
     };
 
     const [task, setTask] = useState({});
-
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -74,12 +68,12 @@ function Task({id, title, description, state}){
     };
     
     const handleClose = () => {
-    setOpen(false);
+        setOpen(false);
     };
 
     return(
         
-<div class="max-w-sm p-6 bg-white border  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 my-3" style={{marginBottom:'10px'}} className='task'>
+<div class="task-container" style={{marginTop:'10px', padding:'10px'}} className='task'>
   
         <h5 class="mb-2 text-2xl font-bold tracking-tight" style={{wordWrap:'break-word'}}>{title}</h5>
         {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{description}</p> */}
@@ -126,8 +120,6 @@ function Task({id, title, description, state}){
                             select
                             fullWidth
                             variant="standard"
-
-                            // defaultValue={JSON.stringify(task)}
                             onChange={(e)=>{
                                 
                                 setTask({...task, state: e.target.value})

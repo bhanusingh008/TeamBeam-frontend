@@ -6,13 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthHeader } from 'react-auth-kit';
 import { Toaster, toast } from 'react-hot-toast';
 import base_url from '../apis/dataApi';
+import logo from '../assets/logo.png'
 
 export const Login = () => {
 
     const signIn = useSignIn();
-
     const authHeader = useAuthHeader();
-
     const navigate = useNavigate();
 
     let s = authHeader();
@@ -35,12 +34,9 @@ export const Login = () => {
 
 
     const handleForm = async (e) =>{
-
         e.preventDefault();
-
         try{
             const response = await axios.post(`${base_url}/login`, loginData)
-
             let tokenRes = response.data.token;
 
             signIn({
@@ -82,10 +78,14 @@ export const Login = () => {
         <div className='login-header'>Welcome To TeamBeam</div>
 
         <div>
-            <h1 style={{color:'white'}}>
-                Incase you're checking this app.<hr></hr><br />
-                email = bhanu@gmail.com AND password = passkey
-            </h1>
+            <div style={{color:'white'}}>
+                Incase you're checking this app.<br></br>
+                email = bhanu AND password = pass
+            </div>
+        </div>
+        <hr></hr>
+        <div className='login-logo-container'>
+            <img className='login-logo' src={logo}></img>
         </div>
         <form className='login-form'>
             <label style={{marginTop:40}}>

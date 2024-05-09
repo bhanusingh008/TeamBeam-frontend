@@ -16,15 +16,12 @@ const AddTask=()=>{
     }, []);
 
     const [task, setTask] = useState({});
-    //form handler function
 
     const handleForm=(e)=>{
         console.log(task);
         post_course(task);
         e.preventDefault();
     }
-
-    // function to post data to server
 
     const post_course=(data)=>{
         axios.post(`${base_url}/task`, data, {
@@ -46,70 +43,51 @@ const AddTask=()=>{
     return(
         <div className='container'>
             <Form>
-            <FormGroup>
-                    <Label for="state">
-                    Status: 
-                    </Label>
+                <FormGroup>
+                    <Label for="state">Status: </Label>
                     <Input
-                    id="state"
-                    name="state"
-                    type="select"
-                    style={{backgroundColor:'black'}}
-                    onChange={(e) =>{
-                        setTask({...task, state: e.target.value})
-                    }}
+                        id="state"
+                        name="state"
+                        type="select"
+                        style={{}}
+                        onChange={(e) =>{
+                            setTask({...task, state: e.target.value})
+                        }}
                     >
-                    <option>
-                        Select
-                    </option>
-                    <option>
-                        To-Do
-                    </option>
-                    <option>
-                        Doing
-                    </option>
-                    <option>
-                        Done
-                    </option>
+                        <option>Select</option>
+                        <option>To-Do</option>
+                        <option>Doing</option>
+                        <option>Done</option>
                     </Input>
                 </FormGroup>
 
                 <FormGroup>
-                    <Label for="Title">
-                    Title
-                    </Label>
+                    <Label for="Title">Title</Label>
                     <Input
-                    id="title"
-                    name="title"
-                    placeholder="Enter the title"
-                    type="text"
-                    onChange={(e) =>{
-                        setTask({...task, title: e.target.value})
-                    }}
+                        id="title"
+                        name="title"
+                        placeholder="Enter the title"
+                        type="text"
+                        onChange={(e) =>{
+                            setTask({...task, title: e.target.value})
+                        }}
                     />
                 </FormGroup>
 
                 <FormGroup>
-                    <Label for="description">
-                    Description
-                    </Label>
+                    <Label for="description">Description</Label>
                     <Input
-                    id="description"
-                    name="text"
-                    type="textarea"
-                    onChange={(e) =>{
-                        setTask({...task, des: e.target.value})
-                    }}
+                        id="description"
+                        name="text"
+                        type="textarea"
+                        onChange={(e) =>{
+                            setTask({...task, des: e.target.value})
+                        }}
                     />
                 </FormGroup>
                 
-                <Button onClick={handleForm}>
-                    Submit
-                </Button>
-
-                <Button href='/'>
-                    Back
-                </Button>
+                <Button onClick={handleForm}>Submit</Button>
+                <Button href='/'>Back</Button>
 
                 </Form>
             <Toaster/>
