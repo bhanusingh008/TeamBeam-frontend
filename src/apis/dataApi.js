@@ -1,3 +1,3 @@
-const base_url = "http://localhost:5000";
+const base_url = process.env.REACT_APP_BACKEND;
 
 export default base_url;
