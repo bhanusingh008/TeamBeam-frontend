@@ -23,13 +23,13 @@ export default function Intro() {
   return (
     <div className='wall'>
         <img src={bgImage} alt='no' className='bg-img'></img>
-        <p className='text-on-image'>
+        <div className='text-on-image'>
           {
             quote
           }
           <br/>
           {author}
-        </p>
+        </div>
 
         <button className='get-quote-btn' onClick={()=>{
           fetch_quote('computers')
