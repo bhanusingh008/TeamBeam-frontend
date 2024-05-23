@@ -25,7 +25,7 @@ function Home(){
     return(
         <>
             <div className="header">
-                KANBAN APP
+                TeamBeam App
                 <img src={logo} alt='logo_alt' style={{height:'40px', width:'50px', margin:'20'}}></img>
             </div>
 
